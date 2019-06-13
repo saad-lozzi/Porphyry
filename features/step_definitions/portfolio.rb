@@ -110,6 +110,10 @@ Quand("on choisit l'item {string}") do |item|
   click_on item
 end
 
+Quand("on met {string} dans la barre de recherche") do |value|
+  fill_in('Rechercher...', with: value).native.send_keys(:return)
+end
+
 # Outcomes
 
 Alors("le titre affiché est {string}") do |portfolio|
@@ -138,5 +142,10 @@ end
 
 Alors ("l'item {string} n'est pas affiché") do |item|
   expect(page).not_to have_content item
+end
+
+Alors("Alors les dessins {string} et {string} sont parmi les dessins affichés affichés") do |valeur1, valeur2|
+  expect(page).to have_content(valeur1)
+  expect(page).to have_content(valeur2)
 end
 
